@@ -1,0 +1,36 @@
+body{
+  margin:0;
+  overflow:hidden;
+  background:black;
+  font-family:Arial;
+  color:white;
+}
+
+.text{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  top:30px;
+  z-index:10;
+}
+
+h1{
+  color:pink;
+  text-shadow:0 0 20px pink;
+  font-size:40px;
+}
+
+button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  background:hotpink;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:deeppink;
+  transform:scale(1.1);
+}
