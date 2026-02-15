@@ -2,161 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Neha ❤️</title>
-
-<style>
-body{
-    margin:0;
-    padding:0;
-    font-family:Arial, sans-serif;
-    background:radial-gradient(circle at top,#0f2027,#090a0f);
-    overflow:hidden;
-    color:white;
-    text-align:center;
-}
-
-/* animated gradient title */
-h1{
-    margin-top:40px;
-    font-size:60px;
-    background:linear-gradient(90deg,#ff4da6,#fff,#ff4da6);
-    background-size:200%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:shine 3s linear infinite;
-}
-@keyframes shine{
-    0%{background-position:0%;}
-    100%{background-position:200%;}
-}
-
-/* floating hearts */
-.heart{
-    position:fixed;
-    bottom:-10px;
-    color:#ff4da6;
-    animation:float 6s linear infinite;
-}
-@keyframes float{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-900px);opacity:0;}
-}
-
-/* center glowing box */
-.box{
-    width:70%;
-    margin:80px auto;
-    padding:40px;
-    border-radius:25px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(10px);
-    box-shadow:0 0 40px rgba(255,0,120,0.6);
-    animation:updown 3s ease-in-out infinite alternate;
-}
-@keyframes updown{
-    from{transform:translateY(0);}
-    to{transform:translateY(-20px);}
-}
-
-/* typing text */
-.typing{
-    font-size:28px;
-    border-right:3px solid white;
-    width:0;
-    margin:auto;
-    overflow:hidden;
-    white-space:nowrap;
-    animation:typing 6s steps(40,end) forwards, blink 1s infinite;
-}
-@keyframes typing{
-    from{width:0;}
-    to{width:100%;}
-}
-@keyframes blink{
-    50%{border-color:transparent;}
-}
-
-/* button */
-button{
-    padding:15px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    background:#ff4da6;
-    color:white;
-    cursor:pointer;
-    margin-top:25px;
-}
-button:hover{
-    background:white;
-    color:#ff4da6;
-}
-
-/* fireworks */
-.fire{
-    position:fixed;
-    width:6px;
-    height:6px;
-    background:white;
-    border-radius:50%;
-    animation:explode 1s linear forwards;
-}
-@keyframes explode{
-    to{
-        transform:translate(var(--x),var(--y));
-        opacity:0;
-    }
-}
-</style>
+<title>For Neha 💖</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>Neha ❤️</h1>
-
-<div class="box">
-<div class="typing">You Are My Heart, My Life, My Everything...</div>
-
-<p style="margin-top:30px;font-size:20px;">
-Neha, from the moment you came into my life  
-everything became magical.  
-I just want to say… I love you forever ❤️
-</p>
-
-<button onclick="surprise()">Click Here</button>
-<h2 id="msg"></h2>
+<div class="text">
+  <h1>🧸 For My Love Neha 💖</h1>
+  <button onclick="love()">Click for Love ❤️</button>
+  <h2 id="msg"></h2>
 </div>
 
-<script>
-function surprise(){
-document.getElementById("msg").innerHTML=
-"Neha 💖 You are my forever and always!";
-
-/* fireworks */
-for(let i=0;i<80;i++){
-let f=document.createElement("div");
-f.className="fire";
-f.style.left=window.innerWidth/2+"px";
-f.style.top=window.innerHeight/2+"px";
-f.style.setProperty('--x',(Math.random()*400-200)+'px');
-f.style.setProperty('--y',(Math.random()*400-200)+'px');
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1000);
-}
-}
-
-/* floating hearts */
-setInterval(()=>{
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+20)+"px";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
-},250);
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
