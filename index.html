@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love Neha ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #ff758c, #ff7eb3);
+    text-align: center;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-800px); opacity: 0;}
+}
+
+.container {
+    margin-top: 80px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 50px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {text-shadow: 0 0 10px #fff;}
+    to {text-shadow: 0 0 30px red;}
+}
+
+.love-box {
+    background: rgba(255,255,255,0.2);
+    padding: 25px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 3s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(50px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #ff4b6e;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff4b6e;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>❤️ Neha ❤️</h1>
+    <h2>You Are My Everything</h2>
+
+    <div class="love-box">
+        <p>Dear Neha,</p>
+        <p>
+        From the day you came into my life, everything became beautiful.  
+        Your smile is my happiness, your voice is my favorite sound.  
+        I feel lucky every day because you are in my life.
+        </p>
+        <p>
+        I promise to always support you, respect you and love you forever.  
+        You are not just my love, you are my world ❤️
+        </p>
+        <p>Forever yours 💖</p>
+    </div>
+
+    <div class="love-box">
+        <h3>Why I Love You 💕</h3>
+        <p>✨ Your cute smile</p>
+        <p>✨ Your caring nature</p>
+        <p>✨ You make my life special</p>
+        <p>✨ Every moment with you is beautiful</p>
+    </div>
+
+    <button onclick="showMessage()">Click for Surprise 💌</button>
+    <h2 id="msg"></h2>
+</div>
+
+<script>
+function showMessage(){
+    document.getElementById("msg").innerHTML = 
+    "Neha, I Love You Forever ❤️";
+}
+
+/* Create floating hearts */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}, 300);
+</script>
+
+</body>
+</html>
