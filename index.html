@@ -3,78 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neha ❤️</title>
+<title>For Neha ❤️</title>
 
 <style>
 body{
     margin:0;
     padding:0;
-    font-family:Arial;
-    background:linear-gradient(to bottom,#141e30,#243b55);
+    font-family:Arial, sans-serif;
+    background:radial-gradient(circle at top,#0f2027,#090a0f);
+    overflow:hidden;
     color:white;
     text-align:center;
-    overflow-x:hidden;
 }
 
-/* title */
+/* animated gradient title */
 h1{
-    margin-top:30px;
-    font-size:50px;
+    margin-top:40px;
+    font-size:60px;
+    background:linear-gradient(90deg,#ff4da6,#fff,#ff4da6);
+    background-size:200%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:shine 3s linear infinite;
+}
+@keyframes shine{
+    0%{background-position:0%;}
+    100%{background-position:200%;}
+}
+
+/* floating hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
     color:#ff4da6;
-    text-shadow:0 0 20px pink;
+    animation:float 6s linear infinite;
+}
+@keyframes float{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-900px);opacity:0;}
 }
 
-/* slideshow */
-.slideshow{
-    width:320px;
-    height:420px;
-    margin:30px auto;
-    position:relative;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 0 25px rgba(255,0,100,0.6);
-}
-
-.slideshow img{
-    width:100%;
-    height:100%;
-    position:absolute;
-    opacity:0;
-    animation:slide 16s infinite;
-}
-
-/* animation for images */
-@keyframes slide{
-    0%{opacity:0;}
-    5%{opacity:1;}
-    25%{opacity:1;}
-    30%{opacity:0;}
-    100%{opacity:0;}
-}
-
-/* delay for each photo */
-.slideshow img:nth-child(1){animation-delay:0s;}
-.slideshow img:nth-child(2){animation-delay:4s;}
-.slideshow img:nth-child(3){animation-delay:8s;}
-.slideshow img:nth-child(4){animation-delay:12s;}
-
-/* up down love letter */
-.letter{
-    width:80%;
-    margin:40px auto;
-    padding:25px;
-    background:rgba(255,255,255,0.08);
-    border-radius:20px;
-    backdrop-filter:blur(5px);
+/* center glowing box */
+.box{
+    width:70%;
+    margin:80px auto;
+    padding:40px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 40px rgba(255,0,120,0.6);
     animation:updown 3s ease-in-out infinite alternate;
-    box-shadow:0 0 20px rgba(255,0,100,0.4);
 }
-
 @keyframes updown{
     from{transform:translateY(0);}
     to{transform:translateY(-20px);}
 }
 
+/* typing text */
+.typing{
+    font-size:28px;
+    border-right:3px solid white;
+    width:0;
+    margin:auto;
+    overflow:hidden;
+    white-space:nowrap;
+    animation:typing 6s steps(40,end) forwards, blink 1s infinite;
+}
+@keyframes typing{
+    from{width:0;}
+    to{width:100%;}
+}
+@keyframes blink{
+    50%{border-color:transparent;}
+}
+
+/* button */
 button{
     padding:15px 30px;
     font-size:18px;
@@ -83,74 +86,76 @@ button{
     background:#ff4da6;
     color:white;
     cursor:pointer;
-    margin-top:20px;
+    margin-top:25px;
 }
 button:hover{
     background:white;
     color:#ff4da6;
 }
 
-/* hearts */
-.heart{
+/* fireworks */
+.fire{
     position:fixed;
-    bottom:-10px;
-    animation:float 6s linear infinite;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    animation:explode 1s linear forwards;
 }
-@keyframes float{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-900px);opacity:0;}
+@keyframes explode{
+    to{
+        transform:translate(var(--x),var(--y));
+        opacity:0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<h1>Neha ❤️ My Love</h1>
+<h1>Neha ❤️</h1>
 
-<!-- PHOTO SLIDESHOW -->
-<div class="slideshow">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
-</div>
+<div class="box">
+<div class="typing">You Are My Heart, My Life, My Everything...</div>
 
-<!-- LOVE LETTER -->
-<div class="letter">
-<p>Dear Neha ❤️</p>
-<p>
-From the day you came into my life, everything became beautiful.  
-Your smile is my happiness and your voice is my peace.  
-Every moment with you feels magical.
+<p style="margin-top:30px;font-size:20px;">
+Neha, from the moment you came into my life  
+everything became magical.  
+I just want to say… I love you forever ❤️
 </p>
 
-<p>
-I just want to say you are my world, my love and my future.  
-I promise to stay with you forever and always.
-</p>
-
-<p>I Love You Neha 💖</p>
+<button onclick="surprise()">Click Here</button>
+<h2 id="msg"></h2>
 </div>
-
-<button onclick="msg()">Click Here 💌</button>
-<h2 id="text"></h2>
 
 <script>
-function msg(){
-document.getElementById("text").innerHTML=
-"Neha ❤️ You are my life forever!";
+function surprise(){
+document.getElementById("msg").innerHTML=
+"Neha 💖 You are my forever and always!";
+
+/* fireworks */
+for(let i=0;i<80;i++){
+let f=document.createElement("div");
+f.className="fire";
+f.style.left=window.innerWidth/2+"px";
+f.style.top=window.innerHeight/2+"px";
+f.style.setProperty('--x',(Math.random()*400-200)+'px');
+f.style.setProperty('--y',(Math.random()*400-200)+'px');
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+}
 }
 
 /* floating hearts */
 setInterval(()=>{
 let heart=document.createElement("div");
 heart.className="heart";
-heart.innerHTML="💖";
+heart.innerHTML="❤️";
 heart.style.left=Math.random()*100+"vw";
 heart.style.fontSize=(Math.random()*20+20)+"px";
 document.body.appendChild(heart);
-setTimeout(()=>{heart.remove();},6000);
-},300);
+setTimeout(()=>heart.remove(),6000);
+},250);
 </script>
 
 </body>
