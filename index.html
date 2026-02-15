@@ -2,97 +2,147 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Anime Proposal ❤️</title>
+<title>Proposal Movie ❤️</title>
 
 <style>
 body{
     margin:0;
     overflow:hidden;
-    background:linear-gradient(black,#0b0b2a);
+    background:black;
     font-family:Arial;
 }
 
-#scene{
-    position:relative;
-    width:100vw;
-    height:100vh;
+#sky{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle at center,#0b0b2a,black);
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2}
+    to{opacity:1}
 }
 
 .character{
     position:absolute;
-    bottom:60px;
-    font-size:80px;
-    transition:2s;
+    bottom:50px;
+    font-size:100px;
+    transition:3s;
 }
 
-#boy{ left:-150px; }
+#boy{ left:-200px; }
 #girl{ right:80px; }
 
 #rose{
     position:absolute;
-    font-size:60px;
-    bottom:120px;
+    font-size:80px;
+    bottom:150px;
     left:50%;
     transform:translateX(-50%);
     opacity:0;
     transition:1.5s;
 }
 
-h1{
+#text{
     position:absolute;
     top:20%;
     width:100%;
     text-align:center;
     color:white;
-    font-size:50px;
-    text-shadow:0 0 20px pink;
+    font-size:60px;
+    text-shadow:0 0 30px pink;
     opacity:0;
     transition:2s;
 }
 
-button{
+#final{
     position:absolute;
-    top:70%;
-    left:50%;
-    transform:translateX(-50%);
-    padding:15px 30px;
-    font-size:20px;
-    background:pink;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+    top:40%;
+    width:100%;
+    text-align:center;
+    color:gold;
+    font-size:70px;
+    opacity:0;
+    transition:2s;
 }
 </style>
 </head>
 
 <body>
 
-<div id="scene">
-    <div id="boy" class="character">👦</div>
-    <div id="girl" class="character">👧</div>
-    <div id="rose">🌹</div>
-    <h1 id="text">Will You Be Mine Neha? ❤️</h1>
-</div>
+<div id="sky"></div>
 
-<button onclick="start()">Start Proposal</button>
+<div id="boy" class="character">👦</div>
+<div id="girl" class="character">👧</div>
+<div id="rose">🌹</div>
 
-<audio id="music" src="https://cdn.pixabay.com/audio/2022/03/15/audio_5a1e8b7e61.mp3"></audio>
+<div id="text">Neha ❤️</div>
+<div id="final">Will You Marry Me? 💍</div>
+
+<audio autoplay id="music" src="https://cdn.pixabay.com/audio/2022/03/15/audio_5a1e8b7e61.mp3"></audio>
 
 <script>
-function start(){
-    document.querySelector("button").style.display="none";
-    document.getElementById("music").play();
+// stars
+for(let i=0;i<120;i++){
+    let s=document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*100+"%";
+    s.style.top=Math.random()*100+"%";
+    s.style.animationDuration=(Math.random()*2+1)+"s";
+    document.getElementById("sky").appendChild(s);
+}
 
-    // boy walk
+// movie timeline
+setTimeout(()=>{
     document.getElementById("boy").style.left="40%";
+},1000);
 
-    setTimeout(()=>{
-        document.getElementById("rose").style.opacity="1";
-    },2000);
+setTimeout(()=>{
+    document.getElementById("rose").style.opacity="1";
+},4000);
 
-    setTimeout(()=>{
-        document.getElementById("text").style.opacity="1";
-    },3500);
+setTimeout(()=>{
+    document.getElementById("text").style.opacity="1";
+},5500);
+
+setTimeout(()=>{
+    document.getElementById("final").style.opacity="1";
+    fireworks();
+    speakLove(); // voice start
+},8000);
+
+// fireworks
+function fireworks(){
+    for(let i=0;i<40;i++){
+        let f=document.createElement("div");
+        f.innerHTML="✨";
+        f.style.position="absolute";
+        f.style.left=Math.random()*100+"%";
+        f.style.top=Math.random()*60+"%";
+        f.style.fontSize="30px";
+        document.body.appendChild(f);
+        setTimeout(()=>{f.remove()},2000);
+    }
+}
+
+// 🎤 Voice function
+function speakLove(){
+    let msg = new SpeechSynthesisUtterance(
+        "Neha... I love you. You are my heart. Will you marry me?"
+    );
+    msg.rate = 0.9;
+    msg.pitch = 1;
+    msg.volume = 1;
+    speechSynthesis.speak(msg);
 }
 </script>
 
