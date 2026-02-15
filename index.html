@@ -6,140 +6,127 @@
 <title>For Neha ❤️</title>
 
 <style>
-body {
+body{
     margin:0;
     padding:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #020111, #191970);
+    font-family:Arial;
+    background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);
+    overflow:hidden;
     color:white;
     text-align:center;
-    overflow-x:hidden;
 }
 
-/* Stars background */
-.star{
-    position:fixed;
-    width:2px;
-    height:2px;
-    background:white;
-    animation: twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-    from{opacity:0.2;}
-    to{opacity:1;}
-}
-
-/* Floating hearts */
-.heart{
-    position:fixed;
-    bottom:-10px;
-    color:#ff4d88;
-    animation: float 6s linear infinite;
-}
-
-@keyframes float{
-    0%{transform:translateY(0);opacity:1;}
-    100%{transform:translateY(-900px);opacity:0;}
-}
-
-.container{
-    margin-top:80px;
-    padding:20px;
-}
-
+/* Title */
 h1{
-    font-size:55px;
-    color:#ff4d88;
+    margin-top:40px;
+    font-size:50px;
+    color:#ff6fa5;
     text-shadow:0 0 20px pink;
-    animation: glow 2s infinite alternate;
 }
 
-@keyframes glow{
-    from{text-shadow:0 0 10px pink;}
-    to{text-shadow:0 0 30px red;}
+/* Teddy animation */
+.teddy{
+    position:absolute;
+    bottom:20px;
+    left:-200px;
+    font-size:120px;
+    animation:walk 8s linear forwards;
 }
 
-.love-box{
-    background:rgba(255,255,255,0.08);
-    margin:25px auto;
+@keyframes walk{
+    0%{left:-200px;}
+    100%{left:40%;}
+}
+
+/* Letter box */
+.letter{
+    position:absolute;
+    bottom:200px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,0.1);
     padding:25px;
-    width:80%;
     border-radius:20px;
+    width:70%;
     backdrop-filter:blur(6px);
-    box-shadow:0 0 15px rgba(255,0,100,0.4);
-    animation:fade 3s ease;
+    box-shadow:0 0 20px rgba(255,0,100,0.5);
+    display:none;
+    animation:fade 2s ease;
 }
 
 @keyframes fade{
-    from{opacity:0; transform:translateY(50px);}
+    from{opacity:0; transform:translateY(40px);}
     to{opacity:1; transform:translateY(0);}
 }
 
 button{
-    padding:15px 30px;
+    padding:15px 25px;
     font-size:18px;
     border:none;
     border-radius:30px;
-    background:#ff4d88;
+    background:#ff6fa5;
     color:white;
     cursor:pointer;
-    margin-top:20px;
-    transition:0.3s;
+    margin-top:15px;
 }
-
 button:hover{
     background:white;
+    color:#ff6fa5;
+}
+
+/* hearts */
+.heart{
+    position:fixed;
+    bottom:-10px;
     color:#ff4d88;
+    animation:float 6s linear infinite;
+}
+@keyframes float{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-900px);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Music -->
-<audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
+<h1>For Neha ❤️</h1>
 
-<div class="container">
-<h1>Neha ❤️</h1>
-<h2>My Moon in the Dark Night 🌙</h2>
+<!-- Teddy -->
+<div class="teddy" id="teddy">🧸</div>
 
-<div class="love-box">
-<p>Dear Neha,</p>
+<!-- Letter -->
+<div class="letter" id="letter">
+<h2>💌 Love Letter For Neha</h2>
 <p>
-In this beautiful night sky, you are my brightest star.  
-Your smile lights up my darkest days.  
-Every moment with you feels like a dream.
+Dear Neha,  
+When you came into my life everything became beautiful.  
+Your smile is my happiness and your voice is my peace.  
 </p>
+
 <p>
+This teddy brings my heart to you.  
 I just want to say…  
-You are my happiness, my peace, my love and my future.  
-I will always love you forever ❤️
+I love you forever and always ❤️
 </p>
-</div>
 
-<div class="love-box">
-<h3>My Promises 💍</h3>
-<p>💖 I will always respect you</p>
-<p>💖 I will always support you</p>
-<p>💖 I will never leave you</p>
-<p>💖 I will love you forever Neha</p>
-</div>
-
-<button onclick="surprise()">Click for Surprise 💌</button>
-<h2 id="text"></h2>
-
+<button onclick="reply()">Click Here 💖</button>
+<h3 id="msg"></h3>
 </div>
 
 <script>
-function surprise(){
-document.getElementById("text").innerHTML=
-"Neha, You Are My Life ❤️ I Love You Forever 🌙";
+/* show letter after teddy arrives */
+setTimeout(()=>{
+document.getElementById("letter").style.display="block";
+},8000);
+
+/* reply message */
+function reply(){
+document.getElementById("msg").innerHTML=
+"Neha ❤️ Will you always stay with me forever?";
 }
 
-/* hearts */
+/* floating hearts */
 setInterval(()=>{
 let heart=document.createElement("div");
 heart.className="heart";
@@ -149,16 +136,6 @@ heart.style.fontSize=(Math.random()*20+20)+"px";
 document.body.appendChild(heart);
 setTimeout(()=>{heart.remove();},6000);
 },300);
-
-/* stars */
-for(let i=0;i<120;i++){
-let star=document.createElement("div");
-star.className="star";
-star.style.left=Math.random()*100+"vw";
-star.style.top=Math.random()*100+"vh";
-star.style.animationDuration=(Math.random()*3+2)+"s";
-document.body.appendChild(star);
-}
 </script>
 
 </body>
