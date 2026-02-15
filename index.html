@@ -21,7 +21,7 @@ body{
     color:white;
 }
 
-/* Text center */
+/* center text */
 .content{
     position:absolute;
     top:50%;
@@ -48,6 +48,14 @@ p{
     margin-top:10px;
 }
 
+/* extra love lines */
+.love-lines{
+    margin-top:20px;
+    font-size:18px;
+    line-height:30px;
+    color:#ffd1e8;
+}
+
 /* gallery */
 .gallery{
     margin-top:30px;
@@ -67,7 +75,6 @@ p{
     transform:scale(1.2) rotateY(20deg);
 }
 
-/* canvas background */
 canvas{
     position:fixed;
     top:0;
@@ -82,18 +89,24 @@ canvas{
     <h1>❤️ Neha ❤️</h1>
     <p>You are my world 🌍</p>
 
+    <!-- LOVE LINES -->
+    <div class="love-lines">
+        <div>Since you came into my life everything feels beautiful 💖</div>
+        <div>Your smile is my daily happiness 😊</div>
+        <div>I promise to stay with you forever ❤️</div>
+        <div>You are my today and all my tomorrows 🌹</div>
+    </div>
+
     <div class="gallery">
-        <img src="https://github.com/vnjassi/meha-love-/blob/main/WhatsApp%20Image%202026-02-15%20at%2019.19.05.jpeg?raw=true">
-        <img src="https://github.com/vnjassi/meha-love-/blob/main/WhatsApp%20Image%202026-02-15%20at%2019.19.06.jpeg?raw=true">
-        <img src="https://github.com/vnjassi/meha-love-/blob/main/WhatsApp%20Image%202026-02-15%20at%2019.19.09.jpeg?raw=true">
+        <img src="pic1.jpg">
+        <img src="pic2.jpg">
+        <img src="pic3.jpg">
     </div>
 </div>
 
-<!-- Three.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
 <script>
-// Scene
 let scene = new THREE.Scene();
 let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
@@ -103,10 +116,8 @@ document.body.appendChild(renderer.domElement);
 
 camera.position.z = 5;
 
-// particles geometry
 let particlesGeometry = new THREE.BufferGeometry;
 const particlesCount = 2000;
-
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i=0;i<particlesCount*3;i++){
@@ -123,18 +134,14 @@ let particlesMaterial = new THREE.PointsMaterial({
 let particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particlesMesh);
 
-// animation
 function animate(){
     requestAnimationFrame(animate);
-
     particlesMesh.rotation.y += 0.002;
     particlesMesh.rotation.x += 0.001;
-
     renderer.render(scene,camera);
 }
 animate();
 
-// resize
 window.addEventListener('resize', ()=>{
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth/window.innerHeight;
