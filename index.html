@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Neha ❤️</title>
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
@@ -17,132 +16,131 @@
 }
 
 body{
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-    height:100vh;
-    overflow-x:hidden;
+    overflow:hidden;
+    background:black;
+    color:white;
+}
+
+/* Text center */
+.content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
     text-align:center;
-    color:#fff;
-}
-
-/* Floating hearts */
-.heart{
-    position:fixed;
-    bottom:-10px;
-    font-size:20px;
-    animation: float 6s linear infinite;
-}
-
-@keyframes float{
-    0%{transform:translateY(0) scale(1);}
-    100%{transform:translateY(-100vh) scale(1.5);}
-}
-
-/* Main container */
-.container{
-    padding-top:60px;
+    z-index:2;
 }
 
 h1{
-    font-size:3rem;
-    animation: glow 2s ease-in-out infinite alternate;
+    font-size:60px;
+    color:#ff4da6;
+    text-shadow:0 0 25px #ff4da6;
+    animation: glow 2s infinite alternate;
 }
 
 @keyframes glow{
-    from{ text-shadow:0 0 10px #fff;}
-    to{ text-shadow:0 0 25px #ff4da6;}
+    from{ text-shadow:0 0 10px #ff4da6;}
+    to{ text-shadow:0 0 40px #ff1a75;}
 }
 
 p{
-    font-size:1.2rem;
-    margin-top:15px;
+    font-size:22px;
+    margin-top:10px;
 }
 
-/* Gallery */
+/* gallery */
 .gallery{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:40px;
+    margin-top:30px;
 }
 
 .gallery img{
-    width:220px;
-    height:260px;
+    width:160px;
+    height:200px;
     object-fit:cover;
-    margin:15px;
-    border-radius:20px;
+    border-radius:15px;
+    margin:10px;
     transition:0.5s;
-    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+    box-shadow:0 10px 30px rgba(255,0,100,0.6);
 }
 
 .gallery img:hover{
-    transform:scale(1.1) rotate(2deg);
+    transform:scale(1.2) rotateY(20deg);
 }
 
-/* Button */
-button{
-    margin-top:30px;
-    padding:15px 30px;
-    border:none;
-    border-radius:30px;
-    font-size:18px;
-    background:#ff4da6;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    background:#ff1a75;
-    transform:scale(1.1);
-}
-
-#message{
-    font-size:1.4rem;
-    margin-top:25px;
-    display:none;
+/* canvas background */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="content">
     <h1>❤️ Neha ❤️</h1>
-    <p>You are the best part of my life ✨</p>
+    <p>You are my world 🌍</p>
 
-    <!-- Photo Gallery -->
     <div class="gallery">
-        <img src="https://github.com/vnjassi/meha-love-/blob/main/WhatsApp%20Image%202026-02-15%20at%2019.19.06.jpeg?raw=true" alt="our pic">
-        <img src="https://github.com/vnjassi/meha-love-/blob/main/WhatsApp%20Image%202026-02-15%20at%2019.19.05.jpeg?raw=true" alt="our pic">
-        <img src="https://github.com/vnjassi/meha-love-/blob/main/WhatsApp%20Image%202026-02-15%20at%2019.19.09.jpeg?raw=true" alt="our pic">
+        <img src="pic1.jpg">
+        <img src="pic2.jpg">
+        <img src="pic3.jpg">
     </div>
-
-    <button onclick="showLove()">Click Here ❤️</button>
-    <div id="message">I Love You So Much Neha 💖</div>
 </div>
 
+<!-- Three.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
 <script>
-// floating hearts
-setInterval(() => {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (Math.random()*20+10) + "px";
-    document.body.appendChild(heart);
+// Scene
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
-    setTimeout(()=>{
-        heart.remove();
-    },6000);
-},300);
+let renderer = new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-// button message
-function showLove(){
-    document.getElementById("message").style.display="block";
+camera.position.z = 5;
+
+// particles geometry
+let particlesGeometry = new THREE.BufferGeometry;
+const particlesCount = 2000;
+
+const posArray = new Float32Array(particlesCount * 3);
+
+for(let i=0;i<particlesCount*3;i++){
+    posArray[i] = (Math.random() - 0.5) * 20;
 }
+
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray,3));
+
+let particlesMaterial = new THREE.PointsMaterial({
+    size:0.05,
+    color:0xff4da6
+});
+
+let particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particlesMesh);
+
+// animation
+function animate(){
+    requestAnimationFrame(animate);
+
+    particlesMesh.rotation.y += 0.002;
+    particlesMesh.rotation.x += 0.001;
+
+    renderer.render(scene,camera);
+}
+animate();
+
+// resize
+window.addEventListener('resize', ()=>{
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+});
 </script>
 
 </body>
 </html>
- 
